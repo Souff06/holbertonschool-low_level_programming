@@ -2,15 +2,13 @@
 
 int main()
 {
-	char ch;
+    char ch;
 
-	printf("Alphabet in lowercase:\n");
+    for (ch = 'a'; ch <= 'z'; ch++) {
+        putchar(ch);
+    }
 
-	for (ch = 'a'; ch <= 'z'; ch++) {
-		printf("%c ", ch);
-	}
+    putchar('\n');
 
-	printf("\n");
-
-	return 0;
+    return 0;
 }

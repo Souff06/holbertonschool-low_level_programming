@@ -23,12 +23,14 @@ void puts_half(char *str)
 	int n = 0;
 	int longCh = _strlen(str);
 
-	if (longCh % 2 != 0)
-	{
-		n = (longCh - 1) / 2;
-		_putchar(n);
-	}
 	for (longCh = longCh / 2; str[longCh] != '\0'; longCh++)
+	{
+		if (longCh % 2 != 0)
+		{
+			n = (longCh - 1) / 2;
+			_putchar(n);
+		}
 		_putchar(str[longCh]);
+	}
 	_putchar('\n');
 }

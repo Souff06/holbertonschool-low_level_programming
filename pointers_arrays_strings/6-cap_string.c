@@ -23,6 +23,8 @@ char *cap_string(char *str)
 			}
 			else if (str[c] > 96 && str[c] < 123 && str[c - 1] == sep[i])
 				str[c] -= 32;
+			else if (str[c] == 0 && str[c] > 96 && str[c] < 123)
+				str[c] -= 32;
 		}
 	}
 	return (str);

@@ -11,11 +11,7 @@ char *str_concat(char *s1, char *s2)
 	int i, j, c, d;
 	char *a;
 
-	if (s1 == NULL)
-		s1 = "";
-	else if (s2 == NULL)
-		s2 = "";
-	else if ((s1 == NULL) && (s2 == NULL))
+	if (s1 == NULL || s2 == NULL)
 	{
 		s1 = "";
 		s2 = "";

@@ -1,0 +1,31 @@
+dog_t *new_dog(char *name, float age, char *owner) : Ceci est une fonction nommée new_dog qui prend trois paramètres : un pointeur vers une chaîne de caractères représentant le nom du chien (name), un nombre à virgule flottante représentant l'âge du chien (age), et un pointeur vers une chaîne de caractères représentant le propriétaire du chien (owner). La fonction renvoie un pointeur vers une structure de type dog_t.
+
+int nlen, olen, i; : Déclare trois variables entières nlen, olen, et i pour stocker la longueur des chaînes de caractères et pour une variable de boucle.
+
+nlen = olen = 0; : Initialise les longueurs des chaînes de caractères à zéro.
+
+while (name[nlen++]) ; : Calcule la longueur de la chaîne de caractères name.
+
+while (owner[olen++]) ; : Calcule la longueur de la chaîne de caractères owner.
+
+doggy = malloc(sizeof(dog_t)); : Alloue dynamiquement de la mémoire pour une structure dog_t à l'aide de malloc.
+
+if (doggy == NULL) return (NULL); : Vérifie si l'allocation de mémoire a réussi. Si la mémoire n'a pas pu être allouée, la fonction retourne NULL.
+
+doggy->name = malloc(nlen * sizeof(doggy->name)); : Alloue dynamiquement de la mémoire pour la chaîne de caractères name dans la structure doggy.
+
+if (doggy == NULL) return (NULL); : Vérifie à nouveau si l'allocation de mémoire a réussi pour name. Sinon, retourne NULL.
+
+for (i = 0; i < nlen; i++) doggy->name[i] = name[i]; : Copie le contenu de la chaîne de caractères name dans la structure doggy.
+
+doggy->age = age; : Copie la valeur de age dans la structure doggy.
+
+doggy->owner = malloc(olen * sizeof(doggy->owner)); : Alloue dynamiquement de la mémoire pour la chaîne de caractères owner dans la structure doggy.
+
+if (doggy == NULL) return (NULL); : Vérifie à nouveau si l'allocation de mémoire a réussi pour owner. Sinon, retourne NULL.
+
+for (i = 0; i < olen; i++) doggy->owner[i] = owner[i]; : Copie le contenu de la chaîne de caractères owner dans la structure doggy.
+
+return (doggy); : Retourne un pointeur vers la structure doggy, qui contient les informations fournies en entrée.
+
+En résumé, cette fonction crée une nouvelle structure dog_t, alloue dynamiquement de la mémoire pour ses champs name et owner, copie les données passées en entrée dans ces champs, et retourne un pointeur vers la structure nouvellement créée.

@@ -1,5 +1,13 @@
 #ifndef DOG_H
 #define DOG_H
+
+#include <stdio.h>
+#include <ctype.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <limits.h>
+
 /**
  * struct dog - dog data
  * @name: name of the dog

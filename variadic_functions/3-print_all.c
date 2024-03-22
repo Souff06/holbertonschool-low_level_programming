@@ -2,45 +2,82 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * print_all - tout afficher
- * @format: le type du carac afficher
-*/
+ * print_char - Prints a char
+ * @ap: Argument pointer
+ */
+void print_char(va_list ap)
+{
+	printf("%c", va_arg(ap, int));
+}
+
+/**
+ * print_integer - Prints an integer
+ * @ap: Argument pointer
+ */
+void print_integer(va_list ap)
+{
+	printf("%d", va_arg(ap, int));
+}
+
+/**
+ * print_float - Prints a float
+ * @ap: Argument pointer
+ */
+void print_float(va_list ap)
+{
+	printf("%f", va_arg(ap, double));
+}
+
+/**
+ * print_string - Prints a string
+ * @ap: Argument pointer
+ */
+void print_string(va_list ap)
+{
+	char *s = va_arg(ap, char *);
+
+	if (!s)
+	{
+		printf("(nil)");
+		return;
+	}
+		printf("%s", s);
+}
+
+/**
+ * print_all - Prints anything
+ * @format: Types of arguments passed to function
+ */
 void print_all(const char * const format, ...)
 {
-	va_list args;
+	print_type types[] = {
+		{"c", print_char},
+		{"i", print_integer},
+		{"f", print_float},
+		{"s", print_string},
+		{NULL, NULL}
+	};
+	va_list ap;
+	char *separator = "";
 	int i = 0;
-	char *str;
+	int j = 0;
 
-	va_start(args, format);
-
+	va_start(ap, format);
 	while (format && format[i])
 	{
-		switch (format[i])
+		while (types[j].type)
 		{
-			case 'c':
-				printf("%c", va_arg(args, int));
-				break;
-			case 'i':
-				printf("%d", va_arg(args, int));
-				break;
-			case 'f':
-				printf("%f", (float)va_arg(args, double));
-				break;
-			case 's':
-				str = va_arg(args, char *);
-				if (str == NULL)
-					printf("(nil)");
-				else
-					printf("%s", str);
-				break;
+			if (*types[j].type == format[i])
+			{
+				printf("%s", separator);
+				types[j].f(ap);
+				separator = ", ";
+			}
+			++j;
 		}
-		if ((format[i + 1] != '\0') &&
-		(format[i] == 'c' || format[i] == 'i' ||
-		format[i] == 'f' || format[i] == 's'))
-			printf(", ");
-		i++;
+		j = 0;
+		++i;
 	}
-
 	printf("\n");
-	va_end(args);
+	va_end(ap);
 }

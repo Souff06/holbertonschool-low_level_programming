@@ -1,4 +1,4 @@
-int _strlen(char *s);
+#include "main.h"
 /**
  * create_file - Function  that creates a file.
  * @filename: the name of file to create
